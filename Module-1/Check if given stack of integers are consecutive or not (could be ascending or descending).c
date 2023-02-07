@@ -76,3 +76,4 @@ else
  printf("the array is not consecutive");
 }
 }
+
