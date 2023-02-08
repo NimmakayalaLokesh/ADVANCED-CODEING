@@ -110,3 +110,105 @@ int main()
     return 0;
 }
 
+
+// 2nd model //
+
+#include<stdio.h>
+int queue[20];
+int stack[20];
+int front=-1,rear=-1,top=-1,fronto=-1,rearo=-1;
+int n;
+int push(int x)
+{	
+	if(top== n-1)
+	printf("\n overflow");
+	else
+	{
+	top++;
+	stack[top]=x;
+	//printf("\n push %d",stack[top]);
+	}
+}
+int pop()
+{	int temp;
+	if(top==-1)
+	{
+	printf("\n underflow");
+	return 9999;
+	}
+	else
+	{
+	 temp= stack[top];  
+	 top--;
+	 return temp;
+	}
+}
+void enqueue(int x)
+{
+   if(front==-1 && rear==-1)
+   {
+      front=rear=0;
+      queue[rear]=x;
+   }
+   else if(rear== n-1)
+   {
+       printf("\nThe queue is full\n");
+   }
+   else
+   {
+       rear=rear+1;
+       queue[rear]=x;
+   }
+}
+int dequeue()
+{
+    int temp;
+    if(front==rear==-1)
+    {
+        printf("\nthe queue is empty\n");
+        return 9999;
+    }
+    
+    else
+    {
+        //printf("\nthe dequed element is %d",queue[front]);
+        temp = queue[front];
+        front=front+1;
+        n=n+1;
+        return temp;
+    }
+}
+int main()
+{
+    int n,i;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        int val;
+        scanf("%d",&val);
+        enqueue(val);
+    }
+    int k;
+    scanf("%d",&k);
+    for(i=0;i<k;i++)
+    {
+        int temp;
+        temp=dequeue();
+        push(temp);
+    }
+    for(i=0;i<k;i++)
+    {
+        int temp=pop();
+        enqueue(temp);
+    }
+    for(i=0;i<(n-k);i++)
+    {
+       int temp= dequeue();
+       enqueue(temp);
+    }
+    for(i=0;i<n;i++)
+    {
+        int temp=dequeue();
+        printf("%d",temp);
+    }
+}
